@@ -1,0 +1,87 @@
+<header class="d-print-none">
+  <nav id="header-nav" class="navbar navbar-expand-md navbar-dark fixed-top bg-primary d-print-none">
+    <div class="container">
+      {%- assign active_class = nil -%}
+      {%- if page.url == "/" -%}
+        {%- assign active_class = " active" -%}
+      {%- endif -%}
+      <a class="navbar-brand{{ active_class }}" href="/">
+        <img alt="logo" src="/assets/icon/favicon-36h.png"/>
+        <span class="ml-2 d-md-none d-lg-inline">{{ site.title | escape }}</span>
+      </a>
+      {%- assign page_paths = site.pages | sort: 'order' | map: "path" -%}
+      {%- assign titles_size = site.pages | map: 'title' | join: '' | size -%}
+      {%- assign current_category = '' -%}
+      {%- if titles_size > 0 -%}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+          <!-- 
+            Categorized Links
+            {%- assign mycats = site.pages | group_by: 'category' -%}
+            {%- for cat in site.cats -%}
+              {%- assign active_class = nil -%}
+              {%- if cat == current_category -%}
+                {%- assign active_class = " active" -%}
+              {%- endif -%}
+              <li class="nav-item dropdown{{ active_class }}">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown-{{ cat }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ cat | replace: '-', ' '}}</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown-{{ cat }}">
+                  {%- assign items = site.pages | where: "category", cat | sort: 'order' -%}
+                  {%- for item in items -%}
+                    {%- assign active_class = nil -%}
+                    {%- if item.url == page.url -%}
+                      {%- assign active_class = " active" -%}
+                    {%- endif -%}
+                    <a class="dropdown-item{{ active_class }}" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                  {%- endfor -%}
+                </div>
+              </li>
+            {%- endfor -%}
+          -->
+          </ul>
+          <ul class="navbar-nav mr-3">
+            <!-- Top-level links -->
+            {%- for path in page_paths -%}
+              {%- assign my_page = site.pages | where: "path", path | first -%}
+              {%- if my_page.url == page.url -%}
+                {%- assign current_category = my_page.category -%}
+              {%- endif -%}
+              {%- unless my_page.exclude_from_header -%}
+                {%- if my_page.category == 'none' -%}
+                  {%- assign active_class = nil -%}
+                  {%- if my_page.title -%}
+                    {%- if my_page.url == page.url -%}
+                      {%- assign active_class = " active" -%}
+                    {%- endif -%}
+                    <li class="nav-item{{ active_class }}">
+                      <a class="nav-link" href="{{ my_page.url | relative_url }}">
+                        {%- if my_page.icon -%}
+                          <i class="{{ my_page.icon }} mr-1"></i>
+                        {%- endif -%}
+                        {{ my_page.title | escape }}
+                      </a>
+                    </li>
+                  {%- endif -%}
+                {%- endif -%}
+              {%- endunless -%}
+            {%- endfor -%}
+          </ul>
+          <!--<form id="search-form" class="form-inline mt-2 mt-md-0 d-none">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" maxlength=128>
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i class="fas fa-search mr-1"></i> Search</button>
+          </form>-->
+        </div>
+      {%- endif -%}
+    </div>
+  </nav>
+</header>
+<!-- Print-only Header -->
+<header class="d-none d-print-block bg-light p-3">
+  <h2>
+    <img class="mr-2" alt="logo" src="/assets/icon/favicon-36h.png"/>
+    {{ site.title | escape }}
+  </h2>
+</header>

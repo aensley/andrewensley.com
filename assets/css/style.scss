@@ -1,0 +1,79 @@
+---
+permalink: /assets/css/style.css
+---
+@charset 'utf-8';
+
+$main-color: #930000;
+
+// Import partials.
+@import
+  'variables' // bootstrap customization
+  , 'bootstrap'
+  , 'syntax-highlighting'
+  , 'anchor-links'
+  //, 'search'
+;
+
+body {
+  font-size: 1rem;
+  background: #f3f3f3;
+}
+
+.social-links {
+  font-size: 2em;
+}
+
+.page-heading {
+  color: $main-color;
+}
+
+.content-col {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+
+@media only screen {
+  body {
+    padding-top: 62px;
+  }
+}
+
+@media only print {
+  // Force full-width content when printing
+  .content-col {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100% !important;
+  }
+}
+
+// Responsive images
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+main {
+  // Header spacing
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 1em;
+  }
+
+  blockquote {
+    border-left: .25em solid #ecf0f1;
+    color: #6a737d;
+    padding: 0 1em;
+  }
+}
+
+footer {
+  background: #ddd !important;
+}

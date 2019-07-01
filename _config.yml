@@ -1,0 +1,34 @@
+title: Andrew Ensley
+author: aensley
+description: Programmer / Musician / Soccer player
+show_excerpts: false # set to true to show excerpts on the homepage
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: flamadiddle
+github_username:  aensley
+
+# Build settings
+markdown: kramdown
+# Date format, http://shopify.github.io/liquid/filters/date/
+minima:
+  date_format: "%b %-d, %Y"
+theme: minima
+plugins:
+  - jekyll-seo-tag # https://help.github.com/en/articles/search-engine-optimization-for-github-pages
+  - jekyll-sitemap # https://help.github.com/en/articles/sitemaps-for-github-pages
+  - jekyll-feed # https://help.github.com/en/articles/atom-rss-feeds-for-github-pages
+  - jekyll-minifier # https://github.com/digitalsparky/jekyll-minifier
+  - bootstrap
+
+# Post permalinks are always the title of the post
+permalink: /:title/
+
+# Page permalinks are always the title of the page
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: page_nosidebar
+      category: none
+      permalink: /:basename/
