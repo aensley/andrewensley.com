@@ -26,8 +26,7 @@ $comment = array(
 	'comment_content'      => $_POST['message'], // The comment content as submitted.
 );
 
-function checkspam($comment)
-{
+function checkspam($comment) {
 	global $akismetKey, $akismetBlogUrl;
 	if (empty($comment['blog'])) {
 		$comment['blog'] = $akismetBlogUrl;
